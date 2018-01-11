@@ -1,3 +1,3 @@
 # image_bot
 
-x. test changes ..
+x test changes ..
