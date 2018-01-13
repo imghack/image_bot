@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 
-from image_preprocessing import image_preprocessing_page
+from image_preprocessing import image_preprocessing_page, Image
 
 # app init
 app = Flask(__name__)
