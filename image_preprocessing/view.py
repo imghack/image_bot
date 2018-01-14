@@ -1,5 +1,4 @@
-from flask import Blueprint, render_template, abort
-from jinja2 import TemplateNotFound
+from flask import Blueprint, render_template
 
 from .Image import Image
 
@@ -11,9 +10,8 @@ image_preprocessing_page = Blueprint('image_preprocessing_page', __name__, templ
 
 image = Image(TEST_IMAGE_URL)
 
-@image_preprocessing_page.route('/', defaults={'page': DEFAULT_TEMPLATE})
-def show(page):
-    try:
-        return render_template(page + '.html', data=image.get_params())
-    except TemplateNotFound:
-        abort(404)
+
+@image_preprocessing_page.route('/')
+def show():
+    return render_template(DEFAULT_TEMPLATE + '.html', data=image.get_params())
+
