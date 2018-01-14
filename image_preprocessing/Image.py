@@ -34,10 +34,7 @@ class Image:
 
         rgbs = [color[1][:3] for color in self._all_colors]
 
-        for rgb in rgbs:
-            if rgb != (0, 0, 0) and rgb != (255, 255, 255):
-                return False
-        return True
+        return all(rgb in ((0, 0, 0), (255, 255, 255)) for rgb in rgbs)
 
 
 if __name__ == '__main__':
