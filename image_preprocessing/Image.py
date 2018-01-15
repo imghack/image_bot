@@ -32,7 +32,7 @@ class Image:
         if self._all_colors_len > 2:
             return False
 
-        rgbs = [color[1][:3] for color in self._all_colors]
+        rgbs = [rgba[:3] for _, rgba in self._all_colors]
 
         return all(rgb in ((0, 0, 0), (255, 255, 255)) for rgb in rgbs)
 
