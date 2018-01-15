@@ -10,7 +10,7 @@ imageApp = Application()
 # default route
 @app.route('/')
 def index():
-    imageApp.parse('http://test.com')
+    imageApp.parse('http://example.com')
     return render_template('index.html', images_count=imageApp.get_images_count())
 
 
