@@ -1,16 +1,15 @@
 from flask import Flask, render_template
 
-from image_preprocessing import image_preprocessing_page, Image
+from application import Application
 
 # app init
 app = Flask(__name__)
 
-# register blue prints
-app.register_blueprint(image_preprocessing_page, url_prefix="/preimg")
-
 # default route
 @app.route('/')
 def index():
+    imageApp = Application()
+    imageApp.add_image('static/images/mono.png')
     return render_template('index.html')
 
 

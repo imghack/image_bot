@@ -1,10 +1,10 @@
 from flask import Blueprint, render_template
 
-from .Image import Image
+from application.Image import Image
 
 DEFAULT_TEMPLATE = 'image_process'
 # TODO : remove absolute link
-TEST_IMAGE_URL = 'image_preprocessing/images/test.jpg'
+TEST_IMAGE_URL = 'static/images/test.jpg'
 
 image_preprocessing_page = Blueprint('image_preprocessing_page', __name__, template_folder='templates')
 
