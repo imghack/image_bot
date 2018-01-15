@@ -15,3 +15,6 @@ class Application:
     def parse(self, url):
         # parser should be here =)
         self.add_image('static/images/mono.png')
+
+    def get_images_count(self):
+        return self._model.get_all_images_count()

@@ -5,12 +5,13 @@ from application import Application
 # app init
 app = Flask(__name__)
 
+imageApp = Application()
+
 # default route
 @app.route('/')
 def index():
-    imageApp = Application()
     imageApp.parse('http://test.com')
-    return render_template('index.html')
+    return render_template('index.html', images_count=imageApp.get_images_count())
 
 
 if __name__ == '__main__':
