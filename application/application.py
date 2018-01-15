@@ -1,5 +1,5 @@
-from .Image import Image
-from .ImageMongoSaver import ImageMongoSaver
+from .image import Image
+from .imageMongoSaver import ImageMongoSaver
 from settings import DB, COLLECTION
 
 
