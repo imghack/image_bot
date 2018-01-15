@@ -34,4 +34,4 @@ class ImageMongoSaver:
 
 
 image_to_save = ImageMongoSaver('test', 'image')
-image_to_save.saver('1.png')
+#image_to_save.saver('1.png')
