@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     imageApp = Application()
-    imageApp.add_image('static/images/mono.png')
+    imageApp.parse('http://test.com')
     return render_template('index.html')
 
 

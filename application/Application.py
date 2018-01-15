@@ -11,3 +11,7 @@ class Application:
         data = Image(url).get_params()
         print(data)
         self._model.save(data)
+
+    def parse(self, url):
+        # parser should be here =)
+        self.add_image('static/images/mono.png')

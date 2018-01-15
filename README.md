@@ -9,3 +9,7 @@
 ### Run basic app
 
 ``` python3 main.py ```
+
+and run mongod to enable db saving
+
+``` mongod ```
