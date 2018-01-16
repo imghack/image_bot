@@ -3,4 +3,4 @@
 DB = 'test'
 COLLECTION = 'image'
 HOST = 'localhost'
-PORT = 27001
+PORT = 27017
