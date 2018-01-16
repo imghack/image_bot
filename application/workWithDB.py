@@ -1,6 +1,6 @@
 import pymongo
 import base64
-from Image import Image
+from .image import Image
 import settings
 from hashlib import md5
 
@@ -36,6 +36,11 @@ class WorkWithDB:
             document_to_save = {'type' : 'image', 'image_hash' : image_hash, }
             document_to_save.update(image.get_params())
             cursor.insert_one(document_to_save)
+
+    def save(self, data):
+        conn = DBConnect()
+        cursor = conn.db_connect(self.db, self.collection)
+        cursor.insert_one(data)
 
     def get_all_images_count(self):
         """
