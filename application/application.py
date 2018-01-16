@@ -1,6 +1,7 @@
 from .image import Image
 from .workWithDB import WorkWithDB
 from settings import DB, COLLECTION
+from .filter import Filter
 
 
 class Application:
@@ -8,9 +9,14 @@ class Application:
         self._model = WorkWithDB(DB, COLLECTION)
 
     def add_image(self, url):
-        data = Image(url).get_params()
+        img = Image(url)
+        data = img.get_params()
         print(data)
-        self._model.save(data)
+        # Filtering duplicates
+        img_hash = img.generate_hash()
+        # the method returns False if there is no duplicates
+        if not Filter.check_duplicate_by_hash(self._model, img_hash):
+            self._model.save(data)
 
     def parse(self, url):
         # parser should be here =)

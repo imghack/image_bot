@@ -1,4 +1,5 @@
 from PIL import Image as Img
+import imagehash
 
 # Limit of max image colors
 # TODO : change to 2 ** 48 fix OverflowError: signed integer is greater than maximum
@@ -35,3 +36,11 @@ class Image:
         rgbs = [rgba[:3] for _, rgba in self._all_colors]
 
         return all(rgb in ((0, 0, 0), (255, 255, 255)) for rgb in rgbs)
+
+    def generate_hash(self):
+        """
+        Generates phash for storing and filtering image.
+        :return: Phash string
+        """
+        return imagehash.average_hash(self._image)
+

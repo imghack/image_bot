@@ -50,21 +50,30 @@ class WorkWithDB:
         cursor = DBConnect().db_connect(self.db, self.collection)
         return cursor.count()
 
+    def get_image_by_hash(self, hash):
+        """
+        Method used to get image tuple by hash
+        :param hash: the phash string
+        :return: the image tuples, that match hash-value
+        """
+        cursor = DBConnect().db_connect(self.db, self.collection)
+        return cursor.find({'image_hash': hash})
 
-    def duplicates_check(self, url):
-        """
-        This method checks is there image duplicate in DB by its hash
-        :param url:
-        :return:
-        """
-        with open(url, "rb") as image_file:
-            image_str = base64.b64encode(image_file.read())
-            hash = md5()
-            hash.update(image_str)
-            image_hash = hash.hexdigest()
-            cursor = DBConnect().db_connect(self.db, self.collection)
-            counter = cursor.count({'image_hash' : image_hash})
-            if counter:
-                print('The image is already in DB')
-            else:
-                print('This is new image')
+
+    # def duplicates_check(self, url):
+    #     """
+    #     This method checks is there image duplicate in DB by its hash
+    #     :param url:
+    #     :return:
+    #     """
+    #     with open(url, "rb") as image_file:
+    #         image_str = base64.b64encode(image_file.read())
+    #         hash = md5()
+    #         hash.update(image_str)
+    #         image_hash = hash.hexdigest()
+    #         cursor = DBConnect().db_connect(self.db, self.collection)
+    #         counter = cursor.count({'image_hash' : image_hash})
+    #         if counter:
+    #             print('The image is already in DB')
+    #         else:
+    #             print('This is new image')
