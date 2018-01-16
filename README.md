@@ -13,3 +13,11 @@
 and run mongod to enable db saving
 
 ``` mongod ```
+
+### Run tests
+
+``` pytest ```
+
+or you can add coverage flag to see code coverage =)
+
+``` pytest --cov="./" ```
