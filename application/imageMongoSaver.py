@@ -37,7 +37,7 @@ class WorkWithDB:
             document_to_save.update(image.get_params())
             cursor.insert_one(document_to_save)
 
-    def count(self):
+    def get_all_images_count(self):
         """
         This method returns all documents number
         :return:
