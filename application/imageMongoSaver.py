@@ -2,6 +2,7 @@ import pymongo
 import base64
 from PIL import Image
 
+
 class DBConnect:
     def db_connect(self, db, collection):
         connection = pymongo.MongoClient('localhost', 27017)
@@ -24,14 +25,20 @@ class ImageMongoSaver:
 
             image = Image.open(path)
 
-            document_to_save = {'type' : 'image',
-                                'format' : image.format,
-                                'size' : image.size,
-                                'image' : image_str
+            document_to_save = {'type': 'image',
+                                'format': image.format,
+                                'size': image.size,
+                                'image': image_str
                                 }
 
             cursor.insert_one(document_to_save)
 
+    def save(self, data):
+        conn = DBConnect()
+        cursor = conn.db_connect(self.db, self.collection)
+        cursor.insert_one(data)
 
-image_to_save = ImageMongoSaver('test', 'image')
-#image_to_save.saver('1.png')
+    def get_all_images_count(self):
+        conn = DBConnect()
+        cursor = conn.db_connect(self.db, self.collection)
+        return cursor.count()
