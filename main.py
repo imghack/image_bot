@@ -1,17 +1,17 @@
 from flask import Flask, render_template
 
-from image_preprocessing import image_preprocessing_page, Image
+from application import Application
 
 # app init
 app = Flask(__name__)
 
-# register blue prints
-app.register_blueprint(image_preprocessing_page, url_prefix="/preimg")
+imageApp = Application()
 
 # default route
 @app.route('/')
 def index():
-    return render_template('index.html')
+    imageApp.parse('http://example.com')
+    return render_template('index.html', images_count=imageApp.get_images_count())
 
 
 if __name__ == '__main__':

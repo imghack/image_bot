@@ -32,17 +32,6 @@ class Image:
         if self._all_colors_len > 2:
             return False
 
-        rgbs = [color[1][:3] for color in self._all_colors]
+        rgbs = [rgba[:3] for _, rgba in self._all_colors]
 
         return all(rgb in ((0, 0, 0), (255, 255, 255)) for rgb in rgbs)
-
-
-if __name__ == '__main__':
-    image = Image('images/test.jpg')
-    params = image.get_params()
-
-    image_mono = Image('images/mono.png')
-    params_mono = image_mono.get_params()
-
-    print(params)
-    print(params_mono)

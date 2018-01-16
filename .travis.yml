@@ -1,6 +1,11 @@
 language: python
+services: mongodb
 python:
   - "3.6"
-# command to run tests
+before_install:
+    - pip install pytest pytest-cov
+    - pip install coveralls
 script:
-  - pytest # or py.test for Python versions 3.5 and below
+  - pytest --cov=./
+after_success:
+    - coveralls

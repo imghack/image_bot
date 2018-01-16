@@ -1,6 +1,6 @@
 # image_bot
 
-### Build status [![Build Status](https://travis-ci.org/imghack/image_bot.svg?branch=master)](https://travis-ci.org/imghack/image_bot)
+### Build status [![Build Status](https://travis-ci.org/imghack/image_bot.svg?branch=master)](https://travis-ci.org/imghack/image_bot) [![Coverage Status](https://coveralls.io/repos/github/imghack/image_bot/badge.svg?branch=master)](https://coveralls.io/github/imghack/image_bot?branch=master)
 
 ### Install packages
 
@@ -9,3 +9,15 @@
 ### Run basic app
 
 ``` python3 main.py ```
+
+and run mongod to enable db saving
+
+``` mongod ```
+
+### Run tests
+
+``` pytest ```
+
+or you can add coverage flag to see code coverage =)
+
+``` pytest --cov="./" ```
