@@ -1,5 +1,8 @@
-from PIL import Image as Img
 import imagehash
+import requests
+import io
+
+from PIL import Image as Img
 
 # Limit of max image colors
 # TODO : change to 2 ** 48 fix OverflowError: signed integer is greater than maximum
@@ -8,7 +11,13 @@ MAX_COLORS = 2 ** 24
 
 class Image:
     def __init__(self, url):
-        self._image = Img.open(url)
+
+        if url.startswith('http'):
+            source = io.BytesIO(requests.get(url).content)
+            self._image = Img.open(source)
+        else:
+            self._image = Img.open(url)
+
         self._all_colors = self._image.getcolors(maxcolors=MAX_COLORS)
         self._all_colors_len = len(self._all_colors)
         self._hash = self._generate_hash()
@@ -53,4 +62,3 @@ class Image:
         :return: the image hash
         """
         return self._hash
-
