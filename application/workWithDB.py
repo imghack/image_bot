@@ -60,7 +60,6 @@ class WorkWithDB:
         col = cursor.find({'hash': hash_string})
         return col[0] if col.count() > 0 else {}  # if there are values in db return the first one else empty({})
 
-
     # def duplicates_check(self, url):
     #     """
     #     This method checks is there image duplicate in DB by its hash
