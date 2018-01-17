@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 from application import Application
 
@@ -8,10 +8,14 @@ app = Flask(__name__)
 imageApp = Application()
 
 # default route
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    imageApp.parse('http://example.com')
-    return render_template('index.html', images_count=imageApp.get_images_count())
+    if request.method == 'POST':
+        # TODO : check is True url / don't belive user
+        imageApp.parse(request.form['url'])
+        return render_template('index.html', images_count=imageApp.get_images_count())
+    else:
+        return render_template('index.html', images_count=imageApp.get_images_count())
 
 
 if __name__ == '__main__':

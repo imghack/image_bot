@@ -6,6 +6,15 @@
         <b>Menu:</b>
         <ul>
             <p>Image saved to db - {{images_count}}</p>
+            <form action="/" method="POST">
+                <div>
+                    <label for="url">Write web what do you want to parce</label>
+                    <input name="url" value="http://example.com">
+                </div>
+                <div>
+                    <button>Parse images</button>
+                </div>
+            </form>
         </ul>
     </body>
 </html>

@@ -24,6 +24,9 @@ class MainTests(unittest.TestCase):
         response = self.app.get('/', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
+    # def test_form_post_request(self):
+    #     response = self.app.post('/', follow_redirects=True)
+    #     self.assertEqual(response.status_code, 200)
 
 if __name__ == "__main__":
     unittest.main()
