@@ -13,9 +13,8 @@ class Application:
         data = img.get_params()
         print(data)
         # Filtering duplicates
-        img_hash = img.generate_hash()
         # the method returns False if there is no duplicates
-        if not Filter.check_duplicate_by_hash(self._model, img_hash):
+        if not Filter.check_duplicate_in_db(self._model, img.get_hash):
             self._model.save(data)
 
     def parse(self, url):

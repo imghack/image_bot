@@ -11,6 +11,7 @@ class Image:
         self._image = Img.open(url)
         self._all_colors = self._image.getcolors(maxcolors=MAX_COLORS)
         self._all_colors_len = len(self._all_colors)
+        self._hash = self._generate_hash()
 
     def get_params(self):
         """
@@ -22,7 +23,8 @@ class Image:
             'height': self._image.size[1],
             'format': self._image.format,
             'colors_count': self._all_colors_len,
-            'mono': self._is_mono()
+            'mono': self._is_mono(),
+            'hash': str(self._hash)
         }
 
     def _is_mono(self):
@@ -37,10 +39,18 @@ class Image:
 
         return all(rgb in ((0, 0, 0), (255, 255, 255)) for rgb in rgbs)
 
-    def generate_hash(self):
+    def _generate_hash(self):
         """
         Generates phash for storing and filtering image.
         :return: Phash string
         """
-        return imagehash.average_hash(self._image)
+        return imagehash.phash(self._image)
+
+    @property
+    def get_hash(self):
+        """
+        The public getter of hash
+        :return: the image hash
+        """
+        return self._hash
 

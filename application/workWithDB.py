@@ -50,14 +50,15 @@ class WorkWithDB:
         cursor = DBConnect().db_connect(self.db, self.collection)
         return cursor.count()
 
-    def get_image_by_hash(self, hash):
+    def get_image_by_hash(self, hash_string):
         """
         Method used to get image tuple by hash
         :param hash: the phash string
         :return: the image tuples, that match hash-value
         """
         cursor = DBConnect().db_connect(self.db, self.collection)
-        return cursor.find({'image_hash': hash})
+        col = cursor.find({'hash': hash_string})
+        return col[0] if col.count() > 0 else {}  # if there are values in db return the first one else empty({})
 
 
     # def duplicates_check(self, url):
