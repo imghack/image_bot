@@ -1,4 +1,6 @@
-pymongo==3.6.0
-Flask==0.12.2
-Pillow==5.0.0
 ImageHash==4.0
+requests==2.18.4
+lxml==4.1.1
+Flask==0.12.2
+pymongo==3.6.0
+Pillow==5.0.0
