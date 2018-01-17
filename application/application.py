@@ -1,11 +1,11 @@
 from .image import Image
-from .imageMongoSaver import ImageMongoSaver
+from .workWithDB import WorkWithDB
 from settings import DB, COLLECTION
 
 
 class Application:
     def __init__(self):
-        self._model = ImageMongoSaver(DB, COLLECTION)
+        self._model = WorkWithDB(DB, COLLECTION)
 
     def add_image(self, url):
         data = Image(url).get_params()
