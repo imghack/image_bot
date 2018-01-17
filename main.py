@@ -9,7 +9,7 @@ imageApp = Application()
 
 
 # default route
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/')
 def index():
     return render_root_template()
 

@@ -10,17 +10,22 @@ MAX_COLORS = 2 ** 24
 
 
 class Image:
+    """
+    Class for pre-processing image parameters
+    """
     def __init__(self, url):
-
+        # TODO : added correct url check
         if url.startswith('http'):
             source = io.BytesIO(requests.get(url).content)
             self._image = Img.open(source)
+            print('Image loaded from - ', url)
         else:
             self._image = Img.open(url)
 
         self._all_colors = self._image.getcolors(maxcolors=MAX_COLORS)
         self._all_colors_len = len(self._all_colors)
         self._hash = self._generate_hash()
+        self._url = url
 
     def get_params(self):
         """
@@ -33,7 +38,8 @@ class Image:
             'format': self._image.format,
             'colors_count': self._all_colors_len,
             'mono': self._is_mono(),
-            'hash': str(self._hash)
+            'hash': str(self._hash),
+            'url': self._url
         }
 
     def _is_mono(self):
@@ -62,3 +68,7 @@ class Image:
         :return: the image hash
         """
         return self._hash
+
+    @property
+    def url(self):
+        return self._url

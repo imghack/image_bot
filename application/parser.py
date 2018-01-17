@@ -2,19 +2,26 @@ from lxml import html
 import requests
 
 
-def parse_images(url):
+class Parser:
     """
-    Parse all images from
+    Class for parsing web site
     """
-    page = requests.get(url)
-    tree = html.fromstring(page.content)
+    @staticmethod
+    def parse_images(url):
+        """
+        Parse images from any web site
+        :param url: image url
+        :return: list of image links
+        """
+        page = requests.get(url)
+        tree = html.fromstring(page.content)
 
-    links = []
-    images = tree.cssselect('img')
-    print(images)
-    for image in images:
-        link = image.get('src')
-        if link and link.startswith('http'):
-            links.append(link)
+        links = []
+        images = tree.cssselect('img')
+        for image in images:
+            link = image.get('src')
+            if link and link.startswith('http'):
+                links.append(link)
 
-    return links
+        print('Founded image links', links)
+        return links
