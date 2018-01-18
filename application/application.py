@@ -1,16 +1,21 @@
 from .image import Image
-from .imageMongoSaver import ImageMongoSaver
+from .workWithDB import WorkWithDB
 from settings import DB, COLLECTION
+from .filter import Filter
 
 
 class Application:
     def __init__(self):
-        self._model = ImageMongoSaver(DB, COLLECTION)
+        self._model = WorkWithDB(DB, COLLECTION)
 
     def add_image(self, url):
-        data = Image(url).get_params()
+        img = Image(url)
+        data = img.get_params()
         print(data)
-        self._model.save(data)
+        # Filtering duplicates
+        # the method returns False if there is no duplicates
+        if not Filter.check_duplicate_in_db(self._model, img.get_hash):
+            self._model.save(data)
 
     def parse(self, url):
         # parser should be here =)

@@ -1,3 +1,3 @@
 from .image import Image
 from .application import Application
-from .imageMongoSaver import ImageMongoSaver
+from .workWithDB import WorkWithDB
