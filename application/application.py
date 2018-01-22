@@ -1,13 +1,12 @@
 from .image import Image
-from .workWithDB import WorkWithDB
-from settings import DB, COLLECTION
+import mymongo
 from .filter import Filter
 from .parser import Parser
 
 
 class Application:
     def __init__(self):
-        self._model = WorkWithDB(DB, COLLECTION)
+        self._model = mymongo
 
     def add_image(self, url):
         img = Image(url)
