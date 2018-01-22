@@ -1,10 +1,10 @@
 import unittest
 
 from main import app
+from main import imageApp
 
 
 class MainTests(unittest.TestCase):
-
     # executed prior to each test
     def setUp(self):
         app.config['TESTING'] = True
@@ -23,6 +23,10 @@ class MainTests(unittest.TestCase):
     def test_main_page(self):
         response = self.app.get('/', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
+
+    # def test_form_post_request(self):
+    #     response = self.app.post('/parse', data={'url': 'http://example.com'})
+    #     self.assertEqual(response.status_code, 200)
 
 
 if __name__ == "__main__":
