@@ -13,7 +13,7 @@ def save(data):
     """
     # the check duplicate method was moved to DB-class
     # because it is more suitable to check data here
-    if not get_image_by_hash(str(data['hash'])):
+    if not _get_image_by_hash(str(data['hash'])):
         cursor.insert_one(data)
         return True
     else:
@@ -24,8 +24,8 @@ def get_all_images_count():
     return cursor.count()
 
 
-def get_image_by_hash(hash_string):
-    """Method used to get image tuple by hash
+def _get_image_by_hash(hash_string):
+    """Private Method used to get image tuple by hash
     :param hash_string: the p-hash string
     :return: the image tuples, that match hash-value
     """

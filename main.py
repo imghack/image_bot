@@ -1,11 +1,9 @@
 from flask import Flask, render_template, request, redirect
 
-from application import Application
+from application import application
 
 # app init
 app = Flask(__name__)
-
-imageApp = Application()
 
 
 # default route
@@ -19,12 +17,12 @@ def post():
     if request.method == 'POST':
         # TODO : check is True url / don't believe user
         print(request.form)
-        imageApp.parse(request.form['url'], request.form['quantity'])
+        application.parse(request.form['url'], request.form['quantity'])
         return redirect('/')
 
 
 def render_root_template():
-    return render_template('index.html', images_count=imageApp.get_images_count())
+    return render_template('index.html', images_count= application.get_images_count())
 
 
 if __name__ == '__main__':
