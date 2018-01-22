@@ -2,7 +2,6 @@
 
 from PIL import Image
 import imagehash
-from .workWithDB import WorkWithDB
 
 
 class Filter:
@@ -18,9 +17,8 @@ class Filter:
         :param hash_from_db: phash value of image
         :return: boolean value - is duplicate or not
         """
-        if isinstance(db_provider, WorkWithDB):
-            # if the returned tuple will be empty ({}), then it will be False (No duplicates)
-            return True if db_provider.get_image_by_hash(str(hash_from_db)) else False
+        # if the returned tuple will be empty ({}), then it will be False (No duplicates)
+        return True if db_provider.get_image_by_hash(str(hash_from_db)) else False
 
     @staticmethod
     def check_duplicate_img(img_in, img_out):
