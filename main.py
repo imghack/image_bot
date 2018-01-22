@@ -17,9 +17,9 @@ def index():
 @app.route('/parse', methods=['POST'])
 def post():
     if request.method == 'POST':
-        # TODO : check is True url / don't belive user
+        # TODO : check is True url / don't believe user
         print(request.form)
-        imageApp.parse(request.form['url'])
+        imageApp.parse(request.form['url'], request.form['quantity'])
         return redirect('/')
 
 
