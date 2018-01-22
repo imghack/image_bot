@@ -1,5 +1,5 @@
 from .image import Image
-import mymongo
+import .mymongo
 from .filter import Filter
 from .parser import Parser
 
