@@ -15,6 +15,10 @@ SPIDER_MODULES = ['image_scrapy.image_scrapy.spiders']
 NEWSPIDER_MODULE = 'image_scrapy.spiders'
 
 
+#Export as CSV Feed
+FEED_FORMAT ="csv"
+FEED_URI = "../../image.csv"
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'image_scrapy (+http://www.yourdomain.com)'
 
