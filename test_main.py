@@ -1,7 +1,6 @@
 import unittest
 
 from main import app
-from main import imageApp
 
 
 class MainTests(unittest.TestCase):
