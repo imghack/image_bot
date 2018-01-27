@@ -9,12 +9,12 @@ class MyMongoTests(unittest.TestCase):
 
     def test_duplicate_from_db_pos(self):
         """Test for has duplicate scenario, when we get hash from db"""
-        img_hash = imagehash.phash(Image.open('/static/images/test42.jpg'))
+        img_hash = imagehash.phash(Image.open('static/images/test42.jpg'))
         self.assertEqual(get_image_by_hash(img_hash), False)
 
     def test_duplicate_from_db_neg(self):
         """Test for has no duplicate scenario, when we get hash from db"""
-        img_hash = imagehash.phash(Image.open('/static/images/mono.png'))
+        img_hash = imagehash.phash(Image.open('static/images/mono.png'))
 
         self.assertEqual(get_image_by_hash(img_hash), True)
 
