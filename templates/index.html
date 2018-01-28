@@ -3,7 +3,7 @@
         <title>Image bot</title>
     </head>
     <body>
-        <b>Menu:</b>
+        <b>Image bot application</b>
         <ul>
             <p>Image saved to db - {{images_count}}</p>
             <form action="/parse" method="POST">
@@ -12,11 +12,12 @@
                     <input name="url" value="https://www.pexels.com/">
                 </div>
                 <div>
-                    <h4>how many images to Insert?</h4>
+                    <label for="quantity">how many images to Insert?</label>
                     <input name="quantity" type="text" value="1">
-                    <input type="submit" value="Parse images">
                 </div>
+                <input type="submit" value="Parse images">
             </form>
+            <a href="download/image">Download images as xml</a>
         </ul>
     </body>
 </html>

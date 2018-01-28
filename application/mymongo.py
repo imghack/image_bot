@@ -27,8 +27,8 @@ def get_all_images_count():
 
 
 def export_to_xml():
-    """
-    Export to all images to xml file
+    """ Export to all images to xml as string
+    :return: xml as string
     """
     root = ET.Element("root")
     images = ET.SubElement(root, "images")
@@ -40,10 +40,7 @@ def export_to_xml():
         for key in document:
             sub_element.set(key, str(document[key]))
 
-    tree = ET.ElementTree(root)
-    tree.write(os.path.join(settings.DOWNLOADS_FOLDER, settings.DOWNLOAD_IMAGE_XML_FILE_NAME),
-               **settings.XML_PROPERTIES)
-
+    return ET.tostring(root, encoding='utf8', method='xml')
 
 def _get_image_by_hash(hash_string):
     """Private Method used to get image tuple by hash
@@ -53,5 +50,6 @@ def _get_image_by_hash(hash_string):
     col = cursor.find({'hash': hash_string})
     return col[0] if col.count() > 0 else {}  # if there are values in db return the first one else empty({})
 
+
 if __name__ == '__main__':
-    export_to_xml()
+    print(export_to_xml())
