@@ -1,27 +1,35 @@
 from .image import Image
-import mymongo
-from .filter import Filter
 from .parser import Parser
+from .mymongo import save, get_all_images_count
 
 
-class Application:
-    def __init__(self):
-        self._model = mymongo
+def add_image(url):
+    """ Image adding function, that inserts data into mongoDB
+    :param url: the link to download photo
+    :return: boolean result of adding image (T OR F)
+    """
+    img = Image(url)
+    data = img.get_params()
+    print('Stored image - ', img.url)
+    return save(data)
 
-    def add_image(self, url):
-        img = Image(url)
-        data = img.get_params()
-        # Filtering duplicates
-        # the method returns False if there is no duplicates
-        if not Filter.check_duplicate_in_db(self._model, img.get_hash):
-            print('Stored image - ', img.url)
-            self._model.save(data)
 
-    def parse(self, url):
-        images_links = Parser.parse_images(url)
-        # TODO :  parse only first 5 image to see result faster
-        for link in images_links[:5]:
-            self.add_image(link)
+def parse(url, quantity):
+    """ Url-parser function, that extracts fixed-size quantity of images from url
+        (Insert only unique values)
+    :param url: the link to web-site with images
+    :param quantity: the quantity of images to insert
+    """
+    images_links = Parser.parse_images(url)
+    quantity = int(quantity)
+    # TODO :  parse only first 5 image to see result faster
+    while quantity > 0:
+        # if the image is duplicated -> pick another one
+        quantity = quantity - 1 if add_image(images_links.__next__()) else quantity
 
-    def get_images_count(self):
-        return self._model.get_all_images_count()
+
+def get_images_count():
+    """ Counter of images in mongoDB
+    :return: quantity of images
+    """
+    return get_all_images_count()

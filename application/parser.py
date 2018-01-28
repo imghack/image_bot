@@ -16,12 +16,10 @@ class Parser:
         page = requests.get(url)
         tree = html.fromstring(page.content)
 
-        links = []
         images = tree.cssselect('img')
         for image in images:
             link = image.get('src')
             if link and link.startswith('http'):
-                links.append(link)
+                print('Founded image link', link)
+                yield link
 
-        print('Founded image links', links)
-        return links
