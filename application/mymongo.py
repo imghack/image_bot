@@ -42,6 +42,7 @@ def export_to_xml():
 
     return ET.tostring(root, encoding='utf8', method='xml')
 
+
 def _get_image_by_hash(hash_string):
     """Private Method used to get image tuple by hash
     :param hash_string: the p-hash string
@@ -49,7 +50,3 @@ def _get_image_by_hash(hash_string):
     """
     col = cursor.find({'hash': hash_string})
     return col[0] if col.count() > 0 else {}  # if there are values in db return the first one else empty({})
-
-
-if __name__ == '__main__':
-    print(export_to_xml())
