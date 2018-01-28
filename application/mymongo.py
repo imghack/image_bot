@@ -22,6 +22,13 @@ def save(data):
         return False
 
 
+def get_all_images():
+    """
+    :return: all data from db, except db id's
+    """
+    return list(cursor.find({}, {'_id': False}))
+
+
 def get_all_images_count():
     return cursor.count()
 

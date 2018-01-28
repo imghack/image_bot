@@ -1,6 +1,7 @@
-from flask import Flask, Response, render_template, request, redirect
+from flask import Flask, Blueprint, Response, render_template, request, redirect
 
 from application import application
+from api import api
 
 # app init
 app = Flask(__name__, static_url_path='/')
@@ -26,6 +27,8 @@ def download_image():
     return Response(application.get_images_as_xml(), mimetype="text/xml",
                     headers={"Content-disposition": "attachment;"})
 
+
+app.register_blueprint(api, url_prefix='/api')
 
 # helpers
 def render_root_template():
