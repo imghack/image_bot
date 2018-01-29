@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, Response, render_template, request, redirect
 
 from application import application
+from api import api
 
 # app init
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/')
 
 
 # default route
@@ -21,8 +22,17 @@ def post():
         return redirect('/')
 
 
+@app.route("/download/image")
+def download_image():
+    return Response(application.get_images_as_xml(), mimetype="text/xml",
+                    headers={"Content-disposition": "attachment;"})
+
+
+app.register_blueprint(api, url_prefix='/api')
+
+# helpers
 def render_root_template():
-    return render_template('index.html', images_count= application.get_images_count())
+    return render_template('index.html', images_count=application.get_images_count())
 
 
 if __name__ == '__main__':
