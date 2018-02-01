@@ -1,3 +1,4 @@
+import requests
 from .image import Image
 from .parser import Parser
 from .mymongo import save, get_all_images_count, export_to_xml
@@ -8,8 +9,11 @@ def add_image(url):
     :param url: the link to download photo
     :return: boolean result of adding image (T OR F)
     """
+    response = requests.get(url)
+    image = response.content
     img = Image(url)
     data = img.get_params()
+    data.update({'image' : image})
     print('Stored image - ', img.url)
     return save(data)
 

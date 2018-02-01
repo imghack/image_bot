@@ -2,11 +2,12 @@ import pymongo
 import os
 import settings
 import xml.etree.cElementTree as ET
+import gridfs
 
 connection = pymongo.MongoClient(settings.HOST, settings.PORT)
 db = connection[settings.DB]
 cursor = db[settings.COLLECTION]
-
+fs = gridfs.GridFS(db, settings.COLLECTION)
 
 def save(data):
     """Db-saver method
@@ -16,6 +17,9 @@ def save(data):
     # the check duplicate method was moved to DB-class
     # because it is more suitable to check data here
     if not _get_image_by_hash(str(data['hash'])):
+        grid_id = fs.put(data['image'])
+        del data['image']
+        data.update({'grid_id' : grid_id})
         cursor.insert_one(data)
         return True
     else:
