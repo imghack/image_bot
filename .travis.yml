@@ -18,3 +18,5 @@ deploy:
   app: "flask"
   env: "example-app-environment"
   bucket_name: "flask"
+  on:
+    branch: feature/max
