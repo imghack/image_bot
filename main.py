@@ -27,7 +27,6 @@ def post():
 
 @app.route("/download/image")
 def download_image():
-    print('asdasdasd')
     logger.send_message('download completed')
     return Response(application.get_images_as_xml(), mimetype="text/xml",
                     headers={"Content-disposition": "attachment;"})
@@ -41,10 +40,8 @@ def render_root_template():
 
 
 if __name__ == '__main__':
-    # TODO : setup correct server
-    # from gevent import pywsgi
-    # from geventwebsocket.handler import WebSocketHandler
-    # server = pywsgi.WSGIServer(('', 5000), app, handler_class=WebSocketHandler)
-    # server.serve_forever()
+    from gevent import pywsgi
+    from geventwebsocket.handler import WebSocketHandler
     app.config['DEBUG'] = True
-    socketio.run(app)
+    server = pywsgi.WSGIServer(('', 5000), app, handler_class=WebSocketHandler)
+    server.serve_forever()
