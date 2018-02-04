@@ -4,7 +4,7 @@ from application import application
 from api import api
 
 # app init
-app = Flask(__name__, static_url_path='/', static_folder='static')
+app = Flask(__name__, static_url_path='/static')
 
 # default route
 @app.route('/')
