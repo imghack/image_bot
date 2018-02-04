@@ -18,6 +18,28 @@
                 <input type="submit" value="Parse images">
             </form>
             <a href="download/image">Download images as xml</a>
+            <div>
+                <h4>Logger</h4>
+                <ul id="log"></ul>
+            </div>
+
         </ul>
+
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            var socket = io.connect('http://' + document.domain + ':' + location.port);
+            socket.on('connect', function() {
+                socket.emit('my event', {data: 'I\'m connected!'});
+                console.log('connected');
+
+                socket.on('message', function (data) {
+                    console.log(data)
+                    var li = document.createElement('li');
+                    li.innerText = JSON.stringify(data);
+                    document.getElementById('log').appendChild(li)
+                })
+            });
+        </script>
+
     </body>
 </html>

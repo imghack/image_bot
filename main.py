@@ -1,12 +1,15 @@
 from flask import Flask, Response, render_template, request, redirect
+from flask_socketio import SocketIO, emit
 
 from application import application
 from api import api
+from logger import Logger
 
 # app init
 app = Flask(__name__, static_url_path='/')
-
-
+socketio = SocketIO(app)
+logger = Logger(socketio)
+    
 # default route
 @app.route('/')
 def index():
@@ -24,6 +27,8 @@ def post():
 
 @app.route("/download/image")
 def download_image():
+    print('asdasdasd')
+    logger.send_message('download completed')
     return Response(application.get_images_as_xml(), mimetype="text/xml",
                     headers={"Content-disposition": "attachment;"})
 
@@ -36,5 +41,10 @@ def render_root_template():
 
 
 if __name__ == '__main__':
+    # TODO : setup correct server
+    # from gevent import pywsgi
+    # from geventwebsocket.handler import WebSocketHandler
+    # server = pywsgi.WSGIServer(('', 5000), app, handler_class=WebSocketHandler)
+    # server.serve_forever()
     app.config['DEBUG'] = True
-    app.run()
+    socketio.run(app)
