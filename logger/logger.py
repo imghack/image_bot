@@ -9,15 +9,15 @@ class Logger:
 
     def send_message(self, message):
         time = datetime.datetime.now().strftime('%H:%M:%S')
-        self.socketio.emit('message', {'message': time + ' ' + message}, namespace='/', broadcast=True)
-        self.socketio.sleep(0)
-
+        self.socketio.emit('message', {'message': time + ' ' + message})
+        
     def _setup_events(self, socketio):
         @socketio.on('my event', namespace='/')
         def test_message(message):
             emit('my response', {'data': message['data']})
             self.socketio.emit('message', {'check logger': 'logger is connected'})
 
+        # TODO : add user register
         # @socketio.on('connect', namespace='/')
         # def test_connect():
         #     emit('my response', {'data': 'Connected'})
