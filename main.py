@@ -12,13 +12,20 @@ def index():
     return render_root_template()
 
 
-@app.route('/parse', methods=['POST'])
+@app.route('/parse', methods=['GET', 'POST'])
 def post():
     if request.method == 'POST':
         # TODO : check is True url / don't believe user
         print(request.form)
         application.parse(request.form['url'], request.form['quantity'])
-        return redirect('/')
+        return redirect('/parse')
+    return render_template("parse.html")
+
+
+@app.route('/about', methods=['GET', 'POST'])
+def about():
+    if request.method == 'GET':
+         return render_template("about.html")
 
 
 @app.route("/download/image")

@@ -2,23 +2,25 @@
     <head>
         <title>Image bot</title>
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300" type="text/css">
     </head>
     <body>
-        <b>Image bot application</b>
-        <ul>
-            <p>Image saved to db - {{images_count}}</p>
-            <form action="/parse" method="POST">
-                <div>
-                    <label for="url">Write web what do you want to parce</label>
-                    <input name="url" value="https://www.pexels.com/">
-                </div>
-                <div>
-                    <label for="quantity">how many images to Insert?</label>
-                    <input name="quantity" type="text" value="1">
-                </div>
-                <input type="submit" value="Parse images">
-            </form>
-            <a href="download/image">Download images as xml</a>
-        </ul>
+        <div id  = 'wrapper'>
+            <header>
+                <a href="/"><img src="static/images/logo.png" alt="logo" class="logo" ></a>
+            </header>
+            <nav>
+                <ul class="top-menu">
+                    <li><a href="/about">ABOUT US</a></li>
+                    <li class="active">HOME</li>
+                    <li><a href="/parse">PARSE</a></li>
+
+                </ul>
+            </nav>
+            <div id="heading">
+			    <h1>HOME</h1>
+            </div>
+
+        </div>>
     </body>
 </html>
