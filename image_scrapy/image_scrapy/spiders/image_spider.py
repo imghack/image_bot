@@ -31,7 +31,7 @@ class ImageSpider(scrapy.Spider):
             return image_respons.css(query).extract_first()
 
         for next_image in response.css(self.option['imagecss']):
-            if re.match('http',extract_with_css(next_image, self.option['imagelinkcss'])) != None:
+            if 'http' in extract_with_css(next_image, self.option['imagelinkcss']):
                 item = ImageScrapyItem()
                 item['link'] = extract_with_css(next_image, self.option['imagelinkcss'])
                 item['title'] = extract_with_css(next_image, self.option['imagetitlecss'])
