@@ -1,6 +1,6 @@
 import unittest
 
-from application.image import Image
+from application.image_bot.image import Image
 
 PROPERTIES=['width', 'height', 'format', 'colors_count', 'mono']
 

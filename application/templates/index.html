@@ -1,0 +1,66 @@
+<html>
+    <head>
+        <title>Image bot</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300" type="text/css">
+    </head>
+    <body>
+      
+        <div id='wrapper'>
+            <header>
+                <a href="/"><img src="static/images/logo.png" alt="logo" class="logo" ></a>
+            </header>
+            <nav>
+                <ul class="top-menu">
+                    <li><a href="/about">ABOUT US</a></li>
+                    <li class="active">HOME</li>
+                    <li><a href="/parse">PARSE</a></li>
+                </ul>
+            </nav>
+            <div id="heading">
+			        <h1>HOME</h1>
+            </div>
+        </div>
+      
+        <b>Image bot application</b>
+        <ul>
+            <p>Image saved to db - {{images_count}}</p>
+            <form action="/parse" method="POST">
+                <div>
+                    <label for="url">Write web what do you want to parce</label>
+                    <input name="url" value="https://www.pexels.com/">
+                </div>
+                <div>
+                    <label for="quantity">how many images to Insert?</label>
+                    <input name="quantity" type="text" value="1">
+                </div>
+                <input type="submit" value="Parse images">
+            </form>
+           
+        </ul>
+
+     <a href="download/image">Download images as xml</a>
+          <div>
+              <h4>Logger</h4>
+              <ul id="log"></ul>
+          </div>
+
+  
+     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+      <script type="text/javascript" charset="utf-8">
+            var socket = io.connect('http://' + document.domain + ':' + location.port);
+            socket.on('connect', function() {
+                socket.emit('my event', {data: 'I\'m connected!'});
+                console.log('connected');
+
+                socket.on('message', function (data) {
+                    console.log(data)
+                  var li = document.createElement('li');
+                  li.innerText = JSON.stringify(data);
+                  document.getElementById('log').appendChild(li)
+              })
+          });
+      </script>
+
+    </body>
+</html>

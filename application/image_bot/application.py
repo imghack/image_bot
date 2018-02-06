@@ -10,7 +10,6 @@ def add_image(url):
     """
     img = Image(url)
     data = img.get_params()
-    print('Stored image - ', img.url)
     return save(data)
 
 

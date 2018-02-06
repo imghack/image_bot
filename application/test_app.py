@@ -1,11 +1,12 @@
 import unittest
 
-from main import app
+from .app import create_app
 
 
 class MainTests(unittest.TestCase):
     # executed prior to each test
     def setUp(self):
+        app = create_app()
         app.config['TESTING'] = True
         app.config['DEBUG'] = False
         self.app = app.test_client()

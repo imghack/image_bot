@@ -1,8 +1,11 @@
+gevent==1.2.2
+requests==2.18.4
+lxml==4.1.1
 Scrapy==1.5.0
 Flask_RESTful==0.3.6
+ImageHash==4.0
 pymongo==3.6.0
 Flask==0.12.2
-requests==2.18.4
-ImageHash==4.0
-lxml==4.1.1
+Flask_SocketIO==2.9.3
 Pillow==5.0.0
+gevent_websocket==0.10.1
