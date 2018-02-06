@@ -9,14 +9,3 @@ script:
   - pytest --cov=./
 after_success:
     - coveralls
-#deploy:
-#  provider: elasticbeanstalk
-#  access_key_id: AKIAISEJ7A2BUHBVLRNQ
-#  secret_access_key:
-#    secure: "YhfMB/knFDMSAY3gPy1WlzAwZybLxMgpNpzdg/E7"
-#  region: "eu-central-1"
-#  app: "flask"
-#  env: "example-app-environment"
-#  bucket_name: "ec2-18-196-168-247"
-#  on:
-#    branch: feature/max
