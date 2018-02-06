@@ -1,1 +1,6 @@
 repo_token: XGD3IxTR0VGMSeCcS42H9LsZ4SYy2UZO9
+
+[run]
+omit =
+    main.py
+
