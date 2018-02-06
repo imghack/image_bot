@@ -1,6 +1,5 @@
 import pymongo
-import os
-import settings
+from application import settings
 import xml.etree.cElementTree as ET
 
 connection = pymongo.MongoClient(settings.HOST, settings.PORT)

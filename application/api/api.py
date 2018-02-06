@@ -1,8 +1,8 @@
 from flask import Blueprint
 from flask_restful import Api
 
-from api.resources.images import Images
-from api.resources.images_list import ImagesList
+from application.api.resources import Images
+from application.api.resources import ImagesList
 
 api_blueprint = Blueprint('api', __name__, template_folder='templates')
 api = Api(api_blueprint)
