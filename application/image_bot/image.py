@@ -18,7 +18,6 @@ class Image:
         if url.startswith('http'):
             source = io.BytesIO(requests.get(url).content)
             self._image = Img.open(source)
-            print('Image loaded from - ', url)
         else:
             self._image = Img.open(url)
 
