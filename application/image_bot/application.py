@@ -1,6 +1,6 @@
 from .image import Image
 from .parser import Parser
-from .mymongo import save, get_all_images_count, export_to_xml
+from application.db.db import save, get_all_images_count, export_to_xml
 
 
 def add_image(url):

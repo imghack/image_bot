@@ -1,7 +1,7 @@
 import unittest
 
 from PIL import Image
-from application.image_bot.tests.mocks.mock_mymongo import get_image_by_hash, get_all_images_count
+from .mocks.mock_mymongo import get_image_by_hash, get_all_images_count
 import imagehash
 
 

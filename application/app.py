@@ -32,10 +32,10 @@ def setup_routes(app):
             return redirect('/parse')
         return render_template("parse.html")
 
-    @app.route('/about', methods=['GET', 'POST'])
+    @app.route('/images', methods=['GET', 'POST'])
     def about():
         if request.method == 'GET':
-            return render_template("about.html")
+            return render_template("images.html", application.get_images_count())
 
     @app.route("/download/image")
     def download_image():
