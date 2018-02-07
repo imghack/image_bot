@@ -6,6 +6,8 @@ before_install:
     - pip install pytest pytest-cov
     - pip install coveralls
 script:
+  - cd application/
   - pytest --cov=./
+  - cd ..
 after_success:
     - coveralls
