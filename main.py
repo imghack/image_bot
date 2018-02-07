@@ -1,6 +1,7 @@
+
 from flask import Response, render_template, request, redirect
 from application import application, create_app
-from api import api
+from application import api
 
 
 # Creating app instance using fabric
@@ -46,5 +47,10 @@ def render_root_template():
 
 
 if __name__ == '__main__':
-    app.config['DEBUG'] = True
-    app.run()
+    # app.config['DEBUG'] = True
+    # app.run()
+    from gevent import pywsgi
+    from geventwebsocket.handler import WebSocketHandler
+    print('Open in browser - 0.0.0.0:8080')
+    server = pywsgi.WSGIServer(('0.0.0.0', 8080), app, handler_class=WebSocketHandler)
+    server.serve_forever()

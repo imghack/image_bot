@@ -1,11 +1,11 @@
-from .image import Image
-from .parser import Parser
-from application import mymongo
 from flask import Flask
-from settings import BACKEND, BROKER
 from celery import Celery
+from .settings import BACKEND, BROKER
 
 celery = Celery(__name__, broker=BROKER, backend=BACKEND)
+
+from .image_bot import application
+from .api import api
 
 
 def create_app():
@@ -14,5 +14,5 @@ def create_app():
     """
     app = Flask(__name__, static_url_path='/image_bot/static')
     celery.conf.update(app.config)
-    return app
 
+    return app
