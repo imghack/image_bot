@@ -2,6 +2,7 @@ from flask import Flask, Response, render_template, request, redirect
 from flask_socketio import SocketIO
 
 from .image_bot import application
+from .db.db import get_all_images
 from .api import api
 from .logger import Logger
 from .settings import STATIC_PATH
@@ -32,10 +33,10 @@ def setup_routes(app):
             return redirect('/parse')
         return render_template("parse.html")
 
-    @app.route('/images', methods=['GET', 'POST'])
+    @app.route('/images', methods=['GET'])
     def about():
         if request.method == 'GET':
-            return render_template("images.html", application.get_images_count())
+            return render_template("images.html", images=get_all_images())
 
     @app.route("/download/image")
     def download_image():

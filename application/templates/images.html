@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,300" type="text/css">
 </head>
 <body>
-     <div id  = 'wrapper'>
-           <div id="heading">
-			    <h1>ABOUT US</h1>
-            </div>
-     </div>
+     <ul>
+    {% for image in images %}
+      <li>
+          {{loop.index}}
+          <img src="{{ image.url }}" alt="">
+          {{ image }}
+      </li>
+    {% endfor %}
+    </ul>
 </body>
 </html>
