@@ -1,8 +1,10 @@
 from .image import Image
-from .parser import Parser
 from .mymongo import save, get_all_images_count, export_to_xml
+from .parser import Parser
+from . import celery
 
 
+@celery.task()
 def add_image(url):
     """ Image adding function, that inserts data into mongoDB
     :param url: the link to download photo
@@ -14,6 +16,7 @@ def add_image(url):
     return save(data)
 
 
+@celery.task()
 def parse(url, quantity):
     """ Url-parser function, that extracts fixed-size quantity of images from url
         (Insert only unique values)
@@ -28,6 +31,7 @@ def parse(url, quantity):
         quantity = quantity - 1 if add_image(images_links.__next__()) else quantity
 
 
+@celery.task()
 def get_images_count():
     """ Counter of images in mongoDB
     :return: quantity of images
@@ -35,6 +39,7 @@ def get_images_count():
     return get_all_images_count()
 
 
+@celery.task()
 def get_images_as_xml():
     """
     :return: xml text for all images in database

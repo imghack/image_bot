@@ -6,3 +6,4 @@ requests==2.18.4
 ImageHash==4.0
 lxml==4.1.1
 Pillow==5.0.0
+celery==4.1.0
