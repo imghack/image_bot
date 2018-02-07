@@ -4,7 +4,8 @@ from flask_socketio import SocketIO
 from .image_bot import application
 from .db.db import get_all_images
 from .api import api
-from .logger import Logger
+from .utils.logger import Logger
+from .forms import ParseForm
 from .settings import STATIC_PATH
 
 
@@ -26,12 +27,11 @@ def setup_routes(app):
 
     @app.route('/parse', methods=['GET', 'POST'])
     def post():
-        if request.method == 'POST':
-            # TODO : check is True url / don't believe user
-            print(request.form)
-            application.parse(request.form['url'], request.form['quantity'])
-            return redirect('/parse')
-        return render_template("parse.html")
+        form = ParseForm(request.form)
+        if request.method == 'POST' and form.validate():
+            application.parse(form.url.data, form.quantity.data)
+            return render_root_template()
+        return render_root_template()
 
     @app.route('/images', methods=['GET'])
     def about():

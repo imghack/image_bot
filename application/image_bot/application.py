@@ -24,7 +24,7 @@ def parse(url, quantity):
     # TODO :  parse only first 5 image to see result faster
     while quantity > 0:
         # if the image is duplicated -> pick another one
-        quantity = quantity - 1 if add_image(images_links.__next__()) else quantity
+        quantity = quantity - 1 if add_image(next(images_links)) else quantity
 
 
 def get_images_count():

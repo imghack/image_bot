@@ -20,6 +20,5 @@ class Parser:
         for image in images:
             link = image.get('src')
             if link and link.startswith('http'):
-                print('Founded image link', link)
                 yield link
 
