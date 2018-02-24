@@ -14,6 +14,7 @@ def save(data):
     """
     # the check duplicate method was moved to DB-class
     # because it is more suitable to check data here
+    # TODO : raise new Error if you can't store image
     if not _get_image_by_hash(str(data['hash'])):
         cursor.insert_one(data)
         return True
