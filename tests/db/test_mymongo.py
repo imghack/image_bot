@@ -4,17 +4,21 @@ from PIL import Image
 from .mocks.mock_mymongo import get_image_by_hash, get_all_images_count
 import imagehash
 
+from tests.settings import IMAGES_PATH
+
 
 class MyMongoTests(unittest.TestCase):
 
     def test_duplicate_from_db_pos(self):
         """Test for has duplicate scenario, when we get hash from db"""
-        img_hash = imagehash.phash(Image.open('static/images/test42.jpg'))
+        image_path = ''.join([IMAGES_PATH, 'test42.jpg'])
+        img_hash = imagehash.phash(Image.open(image_path))
         self.assertEqual(get_image_by_hash(img_hash), False)
 
     def test_duplicate_from_db_neg(self):
         """Test for has no duplicate scenario, when we get hash from db"""
-        img_hash = imagehash.phash(Image.open('static/images/mono.png'))
+        image_path = ''.join([IMAGES_PATH, 'mono.png'])
+        img_hash = imagehash.phash(Image.open(image_path))
 
         self.assertEqual(get_image_by_hash(img_hash), True)
 
