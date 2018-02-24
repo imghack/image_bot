@@ -14,7 +14,7 @@ def setup_routes(app, logger):
         return render_root_template()
 
     @app.route('/parse', methods=['GET', 'POST'])
-    def post():
+    def parse():
         form = ParseForm(request.form)
         if request.method == 'POST' and form.validate():
             application.parse(form.url.data, form.quantity.data)
@@ -22,7 +22,7 @@ def setup_routes(app, logger):
         return render_root_template()
 
     @app.route('/images', methods=['GET'])
-    def about():
+    def images():
         if request.method == 'GET':
             return render_template("images.html", images=get_all_images())
 
