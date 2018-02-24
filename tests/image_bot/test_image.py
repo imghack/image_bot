@@ -1,6 +1,6 @@
 import unittest
 
-from application.image_bot.image import Image
+from application.image_preprocessing.image import Image
 
 from tests.settings import IMAGES_PATH
 

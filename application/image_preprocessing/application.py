@@ -1,6 +1,6 @@
 from .image import Image
 from .parser import Parser
-from application.db.db import save, get_all_images_count, export_to_xml
+from application.db.db import save
 
 
 def add_image(url):
@@ -25,10 +25,3 @@ def parse(url, quantity):
     while quantity > 0:
         # if the image is duplicated -> pick another one
         quantity = quantity - 1 if add_image(next(images_links)) else quantity
-
-
-def get_images_count():
-    """ Counter of images in mongoDB
-    :return: quantity of images
-    """
-    return get_all_images_count()

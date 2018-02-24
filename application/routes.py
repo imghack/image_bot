@@ -1,7 +1,7 @@
 from flask import Response, render_template, request, redirect
 
-from .image_bot import application
-from .db.db import get_all_images, export_to_xml # TODO : hard to understand context
+from .image_preprocessing import application # TODO : hard to understand context
+from .db.db import get_all_images, export_to_xml, get_all_images_count # TODO : hard to understand context
 from .api import api
 from .forms import ParseForm
 from .settings import STATIC_PATH
@@ -36,4 +36,4 @@ def setup_routes(app, logger):
 
     # helpers
     def render_root_template():
-        return render_template('index.html', images_count=application.get_images_count())
+        return render_template('index.html', images_count=get_all_images_count())
