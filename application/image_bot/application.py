@@ -32,10 +32,3 @@ def get_images_count():
     :return: quantity of images
     """
     return get_all_images_count()
-
-
-def get_images_as_xml():
-    """
-    :return: xml text for all images in database
-    """
-    return export_to_xml()

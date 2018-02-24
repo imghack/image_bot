@@ -2,7 +2,7 @@ from flask import Flask, Response, render_template, request, redirect
 from flask_socketio import SocketIO
 
 from .image_bot import application
-from .db.db import get_all_images
+from .db.db import get_all_images, export_to_xml # TODO : hard to understand context
 from .api import api
 from .utils.logger import Logger
 from .forms import ParseForm
@@ -41,7 +41,7 @@ def setup_routes(app):
     @app.route("/download/image")
     def download_image():
         logger.send_message('download completed')
-        return Response(application.get_images_as_xml(), mimetype="text/xml",
+        return Response(export_to_xml(), mimetype="text/xml",
                         headers={"Content-disposition": "attachment;"})
 
     app.register_blueprint(api, url_prefix='/api')
