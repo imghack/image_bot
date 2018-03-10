@@ -5,7 +5,7 @@ import imagehash
 """Mock functions for testing db functionality"""
 
 def save(data):
-    ...
+    pass
 
 def get_all_images_count():
     return 4
